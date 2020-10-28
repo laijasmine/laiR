@@ -11,7 +11,8 @@ Description: Finally packaging commonly used functions so I don't need to keep m
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
-Imports: tidyverse
+RoxygenNote: 7.1.1
+Imports: tidyverse,
+        fs
 URL: https://github.com/laijasmine/laiR
 BugReports: https://github.com/laijasmine/laiR/issues

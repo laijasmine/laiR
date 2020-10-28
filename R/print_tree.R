@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-print_tree <- function(path, level){
+print_tree <- function(path, level = 1){
   #get the folder information
   files <- fs::dir_ls(path, recurse = level)
   by_dir <- split(files, fs::path_dir(files))
