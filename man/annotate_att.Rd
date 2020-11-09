@@ -4,10 +4,12 @@
 \alias{annotate_att}
 \title{Add attribute annotation to eml document}
 \usage{
-annotate_att(d, attribute, identifier, label, valueURI)
+annotate_att(d, index = NULL, attribute, identifier, label, valueURI)
 }
 \arguments{
 \item{d}{eml document}
+
+\item{index}{integer a number}
 
 \item{attribute}{character - attributeName}
 
