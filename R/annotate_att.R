@@ -16,7 +16,7 @@ annotate_att <- function(d, index = NULL, attribute, identifier, label, valueURI
   j <- which(att == attribute)
 
   #identifier
-  if(att == 1){ #if there is only one
+  if(index == 1){ #if there is only one
     d$dataset$dataTable$attributeList$attribute[[j]]$id <- identifier
 
     d$dataset$dataTable$attributeList$attribute[[j]]$annotation$propertyURI <- list(label = "contains measurements of type",
