@@ -24,11 +24,11 @@ annotate_att <- function(d, index = NULL, attribute, identifier, label, valueURI
     d$dataset$dataTable$attributeList$attribute[[j]]$annotation$valueURI <- list(label = label,
                                                                                  valueURI = valueURI)
   } else{
-    d$dataset$dataTable[[i]]$attributeList$attribute[[j]]$id <- identifier
+    d$dataset$dataTable[[index]]$attributeList$attribute[[j]]$id <- identifier
 
-    d$dataset$dataTable[[i]]$attributeList$attribute[[j]]$annotation$propertyURI <- list(label = "contains measurements of type",
+    d$dataset$dataTable[[index]]$attributeList$attribute[[j]]$annotation$propertyURI <- list(label = "contains measurements of type",
                                                                                     propertyURI = "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType")
-    d$dataset$dataTable[[i]]$attributeList$attribute[[j]]$annotation$valueURI <- list(label = label,
+    d$dataset$dataTable[[index]]$attributeList$attribute[[j]]$annotation$valueURI <- list(label = label,
                                                                                  valueURI = valueURI)
   }
 
