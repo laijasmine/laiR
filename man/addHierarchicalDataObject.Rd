@@ -2,7 +2,7 @@
 % Please edit documentation in R/addHierarchicalDataObject.R
 \name{addHierarchicalDataObject}
 \alias{addHierarchicalDataObject}
-\title{Adding an entire folder to a data package}
+\title{Recursively adding an entire folder to a data package}
 \usage{
 addHierarchicalDataObject(folder_path, pattern, pkg, metadataId)
 }
@@ -19,5 +19,5 @@ addHierarchicalDataObject(folder_path, pattern, pkg, metadataId)
 
 }
 \description{
-Adding an entire folder to a data package
+Recursively adding an entire folder to a data package
 }
