@@ -26,7 +26,7 @@ getFormatList <- function(){
 addHierarchicalDataObject <- function(folder_path, pattern, pkg, metadataId) {
   #take in to account if the file path contains a / at the end
   if(stringr::str_detect(folder_path, "/$")){
-    folder_path <- stringr::str_remove(string, "/$")
+    folder_path <- stringr::str_remove(folder_path, "/$")
   }
 
   files <- dir(folder_path, recursive = T)
