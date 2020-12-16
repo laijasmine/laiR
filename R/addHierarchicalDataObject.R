@@ -47,7 +47,11 @@ addHierarchicalDataObject <- function(folder_path, pattern, pkg, metadataId) {
     formats <- getFormatList()
     n <- which(formats$Extension == ext[[1]][2])
 
-    if(length(formats$ID[n]) > 0){
+    if(length(n) > 1){
+      warning(paste0("Format for ", file_name, " is ambiguous. Using application/octet-stream instead"))
+      obj <- new("DataObject", id=paste0("urn:uuid:", UUIDgenerate()), format="application/octet-stream",
+                 filename= fn, targetPath = fp)
+    } else if(length(formats$ID[n]) > 0){
       obj <- new("DataObject", id=paste0("urn:uuid:", UUIDgenerate()), format=formats$ID[n],
                  filename= fn, targetPath = fp)
     }else{
