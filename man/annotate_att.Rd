@@ -4,7 +4,15 @@
 \alias{annotate_att}
 \title{Add attribute annotation to eml document}
 \usage{
-annotate_att(d, index = NULL, attribute, identifier, label, valueURI)
+annotate_att(
+  d,
+  index = NULL,
+  attribute,
+  identifier = NULL,
+  label,
+  valueURI,
+  type = "dataTable"
+)
 }
 \arguments{
 \item{d}{eml document}
@@ -13,7 +21,7 @@ annotate_att(d, index = NULL, attribute, identifier, label, valueURI)
 
 \item{attribute}{character - attributeName}
 
-\item{identifier}{character - a unique identifier}
+\item{identifier}{character - a unique identifier (other wise defaults to attribute name)}
 
 \item{label}{character - the value semantic annotation label}
 

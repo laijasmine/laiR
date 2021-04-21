@@ -16,3 +16,5 @@ Imports: tidyverse,
         fs
 URL: https://github.com/laijasmine/laiR
 BugReports: https://github.com/laijasmine/laiR/issues
+Suggests: 
+    testthat

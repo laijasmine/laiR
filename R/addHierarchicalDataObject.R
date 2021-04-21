@@ -1,51 +1,27 @@
-#' Get existing formatIDs from Dataone
-#'
-#' @return
-#' @export
-#'
-#' @examples
-getFormatList <- function(){
-  cn <- CNode()
-  formats <- dataone::listFormats(cn)
-  unique(formats[formats$Type == "DATA",c(1,5)])
-
-}
-
 #' Create new dataObjects based on directory
 #'
-#' @param file_name
+#' @param file_name (character)
 #'
 #' @return
 #' @export
 #'
 #' @examples
-createDataObject <- function(file_name){
-  #get all the names straight
-  ext <- stringr::str_split(file_name, "\\.")
-  fn <- paste0(folder_path, "/", file_name)
+createDataObject <- function(file_name, folder_path, pattern, pkg){
 
-  path <- stringr::str_replace(folder_path, pattern, "")
-  fp <- paste0(path, "/", file_name)
+    fn <- paste0(folder_path, "/", file_name)
 
-  #guess the format
-  formats <- getFormatList()
-  n <- which(formats$Extension == ext[[1]][2])
+    path <- stringr::str_replace(folder_path, pattern, "")
+    fp <- paste0(path, "/", file_name)
 
-  if(length(n) > 1){
-    warning(paste0("Format for ", file_name, " is ambiguous. Using application/octet-stream instead"))
-    obj <- new("DataObject", id=paste0("urn:uuid:", UUIDgenerate()), format="application/octet-stream",
+    #guess the format
+    formatId <- arcticdatautils::guess_format_id(fn)
+
+    obj <- new("DataObject", id=paste0("urn:uuid:", UUIDgenerate()), format=formatId,
                filename= fn, targetPath = fp)
-  } else if(length(formats$ID[n]) > 0){
-    obj <- new("DataObject", id=paste0("urn:uuid:", UUIDgenerate()), format=formats$ID[n],
-               filename= fn, targetPath = fp)
-  }else{
-    warning(paste0("Format ", file_name, " not found using application/octet-stream"))
-    obj <- new("DataObject", id=paste0("urn:uuid:", UUIDgenerate()), format="application/octet-stream",
-               filename= fn, targetPath = fp)
-  }
 
-  pkg <- addMember(pkg, obj, metadataId) #add data
+    pkg <- addMember(pkg, obj, metadataId) #add data
 
+    return(pkg)
 }
 
 #add an existing data object
@@ -68,7 +44,9 @@ addHierarchicalDataObject <- function(folder_path, pattern = folder_path, pkg, m
 
   files <- dir(folder_path, recursive = T)
 
-  lapply(files, createDataObject)
+  all <- lapply(files, createDataObject, folder_path =  folder_path, pattern = pattern, pkg = pkg)
 
-  return(pkg)
+  pkg <- all[length(all)]
+
+  return(pkg[[1]])
 }

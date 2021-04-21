@@ -4,7 +4,7 @@
 \alias{addHierarchicalDataObject}
 \title{Recursively adding an entire folder to a data package}
 \usage{
-addHierarchicalDataObject(folder_path, pattern, pkg, metadataId)
+addHierarchicalDataObject(folder_path, pattern = folder_path, pkg, metadataId)
 }
 \arguments{
 \item{folder_path}{(character) where the files are}
