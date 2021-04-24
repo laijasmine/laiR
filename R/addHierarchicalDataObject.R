@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-createDataObject <- function(file_name, folder_path, pattern, pkg){
+createDataObject <- function(file_name, folder_path, pattern, pkg, metadataId){
 
     fn <- paste0(folder_path, "/", file_name)
 
@@ -44,7 +44,7 @@ addHierarchicalDataObject <- function(folder_path, pattern = folder_path, pkg, m
 
   files <- dir(folder_path, recursive = T)
 
-  all <- lapply(files, createDataObject, folder_path =  folder_path, pattern = pattern, pkg = pkg)
+  all <- lapply(files, createDataObject, folder_path =  folder_path, pattern = pattern, pkg = pkg, metadataId = metadataId)
 
   pkg <- all[length(all)]
 
